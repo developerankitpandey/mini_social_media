@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   
     def index
       @posts = Post.all
+      @posts = Post.order(created_at: :desc)
     end
   
     def show
@@ -80,7 +81,7 @@ class PostsController < ApplicationController
       like.destroy if like
       redirect_to @post, notice: 'Disliked this post.'
     end
-    
+
     private
   
     def set_post

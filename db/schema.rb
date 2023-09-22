@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_22_080816) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_22_112508) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -44,6 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_22_080816) do
     t.integer "receiver_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "recipient_id"
     t.index ["receiver_id"], name: "index_chats_on_receiver_id"
     t.index ["sender_id"], name: "index_chats_on_sender_id"
   end
@@ -85,6 +86,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_22_080816) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "user_chats", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "chat_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_id"], name: "index_user_chats_on_chat_id"
+    t.index ["user_id"], name: "index_user_chats_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -108,4 +118,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_22_080816) do
   add_foreign_key "messages", "chats"
   add_foreign_key "messages", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "user_chats", "chats"
+  add_foreign_key "user_chats", "users"
 end
