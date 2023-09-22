@@ -1,0 +1,18 @@
+<%# <h1>My Profile</h1> %>
+
+<!-- Display user information here (e.g., username, profile picture) -->
+
+<h3>My Posts</h3>
+
+<div class="row">
+  <% @posts.each do |post| %>
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <%= image_tag post.image, class: 'card-img-top' if post.image.attached? %>
+        <div class="card-body">
+          <p class="card-text"><%= post.content %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
