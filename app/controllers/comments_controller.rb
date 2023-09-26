@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
       @comment.user = current_user
   
       if @comment.save
-        redirect_to @post, notice: 'Comment added successfully.'
+       render json: @post { message: 'Comment added successfully'} redirect_to @post, notice: 'Comment added successfully.'
       else
         redirect_to @post, alert: 'Failed to add comment.'
       end

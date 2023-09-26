@@ -1,6 +1,8 @@
 # config/routes.rb
 
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   # Define the root route
   root 'posts#index'
 
@@ -12,11 +14,13 @@ Rails.application.routes.draw do
 
   # Posts and Comments routes
   resources :posts do
-    resources :comments, only: [:create, :destroy]
+    resources :comments
     member do
       get 'like'
       get 'dislike'
     end
+    get 'show', on: :member
+    post 'create', on: :collection
   end
 
   # Chats routes
