@@ -72,3 +72,10 @@ group :test do
 end
 
 gem "devise", "~> 4.9"
+
+gem "activeadmin", "~> 3.0"
+
+gem "sassc", "~> 2.4"
+
+# gem "gem", "~> 0.0.1.alpha"
+gem "devise_token_auth", "~> 1.2"
